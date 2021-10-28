@@ -18,9 +18,34 @@ The next components are all optional but make for a better flow of the scoreboar
 
 To install the basic functional scoreboard download this repository.
 There are two ways to do this.
-Either download using the green code button at the top of the page on the right.
+Either download using the green code button at the top of the page on the right to download the ZIP.
 Or, run `git clone https://github.com/PrestonHager/Scoreboard.git` in a terminal.
-Now, run `sls deploy` in the terminal at the Scoreboard directory.
+Setup an IAM user on your AWS account.
+This can be any name, the important part to download is the keys.
+<!-- TODO: there is a way to program these roles into the serverless.yml file
+      then, we wouldn't need to add these permissions manually. -->
+Additionally, add the following roles to this IAM user:
+
+ + AmazonDynamoDBFullAccess
+ + CloudFormationFullAccess
+ + AWSLambda_FullAccess
+
+Set your keys in the terminal through either of the following commands, replacing the example keys with the keys you downloaded earlier:
+
+```bash
+  export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+  export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+```
+
+or
+
+```bash
+  serverless config credentials --provider aws --key AKIAIOSFODNN7EXAMPLE --secret wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+```
+
+Now, run `serverless deploy` in the terminal at the Scoreboard directory.
+If all goes well, you should see a deployment and a url like the following in the output: `https://abcd1234ij.execute-api.us-east-1.amazonaws.com/dev/`.
+
 
 ### How it works
 
