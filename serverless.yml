@@ -1,0 +1,47 @@
+# serverless.yml
+# by Preston Hager
+
+service: scoreboard
+app: scoreboard
+org: prestonhager
+
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-west-2
+  lambdaHashingVersion: 20201221
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource: arn:aws:dynamodb:*:*:table/scoreboard-scoreboards
+
+functions:
+  index:
+    handler: handler.index
+    events:
+      - http:
+          method: GET
+          path: '/'
+  auth:
+    handler: handler.auth
+    events:
+      - http:
+          method: POST
+          path: auth
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: scoreboard.prestonhager.xyz
+    basePath: ''
+    stage: ${self:provider.stage, 'dev'}
+    certificateName: 'prestonhager.xyz'
+    createRoute53Record: false

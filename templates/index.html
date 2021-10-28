@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Scoreboard</title>
+</head>
+<body>
+  <h1>Scoreboard</h1>
+  <ul>
+  {% for listing in scores %}
+    <li>
+      <p>Listing - {{ listing }}</p>
+      <p>Score - {{ scores[listing]['total'] }}</p>
+    </li>
+  {% endfor %}
+  </ul>
+</body>
+</html>
