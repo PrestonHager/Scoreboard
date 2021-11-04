@@ -1,0 +1,14 @@
+{
+  "1": {
+    "message": "No event body or key in body was found."
+  },
+  "2": {
+    "message": "Username not found in database."
+  },
+  "3": {
+    "message": "Password invalid."
+  },
+  "4": {
+    "message": "Access key invalid."
+  }
+}

@@ -5,7 +5,6 @@ service: scoreboard
 app: scoreboard
 org: prestonhager
 
-
 frameworkVersion: '2'
 
 provider:
@@ -34,6 +33,24 @@ functions:
       - http:
           method: POST
           path: auth
+  add_listing:
+    handler: handler.add_listing
+    events:
+      - http:
+          method: POST
+          path: add-listing
+  edit_listing:
+    handler: handler.edit_listing
+    events:
+      - http:
+          method: POST
+          path: edit-listing
+  static:
+    handler: handler.static
+    events:
+      - http:
+          method: GET
+          path: static/{filename}
 
 plugins:
   - serverless-domain-manager
