@@ -54,8 +54,13 @@ functions:
 
 plugins:
   - serverless-domain-manager
+  - serverless-python-requirements
 
 custom:
+  pythonRequirements:
+    boto3: true
+    bcrypt: true
+    jinja2: true
   customDomain:
     domainName: scoreboard.prestonhager.xyz
     basePath: ''
