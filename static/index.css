@@ -1,7 +1,1 @@
-body {
-  margin: 0;
-}
-
-ul {
-  text-decoration: none;
-}
+body{margin:0}h1{text-align:center}ul{list-style:none;padding:0;margin:1em 5em}li.listing{display:flex;background:#dedede;padding:.5em 1em;border:.0625em #000 solid;border-bottom:0}li.listing .listing-id{display:none}li.listing .listing-name{flex:3}li.listing .listing-score{flex:1}li.listing:first-child{border-top-right-radius:1em;border-top-left-radius:1em}li.listing:last-child{border:.0625em #000 solid;border-bottom-right-radius:1em;border-bottom-left-radius:1em}

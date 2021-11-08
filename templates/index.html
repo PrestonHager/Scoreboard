@@ -3,14 +3,17 @@
 <html>
 <head>
   <title>Scoreboard</title>
+  <link href="/static/index.css" rel="stylesheet">
 </head>
 <body>
   <h1>Scoreboard</h1>
+  <h3>{{ name }}</h3>
   <ul>
   {% for listing in scores %}
-    <li>
-      <p>Listing - {{ listing }}</p>
-      <p>Score - {{ scores[listing]['total'] }}</p>
+    <li class="listing">
+      <span class="listing-id">{{ listing }}</span>
+      <span class="listing-name">{{ scores[listing]['name'] or 'Unknown'}}</span>
+      <span class="listing-score">Score - {{ scores[listing]['total'] }}</span>
     </li>
   {% endfor %}
   </ul>

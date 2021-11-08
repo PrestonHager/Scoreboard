@@ -19,6 +19,12 @@ env = Environment(
 with open("errors.json", 'r') as f_in:
     ERRORS = json.load(f_in)
 
+MIMETYPES = {
+    "css": "text/css",
+    "js": "application/javascript",
+    "html": "text/html"
+}
+
 class Handler:
     def __init__(self):
         self.password_manager = PasswordManager()
@@ -31,7 +37,7 @@ class Handler:
     def index(self, event, context):
         scoreboard = self.scoreboard_table.get_scoreboard(self.DEFAULT_SCOREBOARD)
         template = env.get_template("index.html")
-        content = template.render(scores=scoreboard['scores'])
+        content = template.render(scores=scoreboard['scores'], name=scoreboard['name'])
         return self.create_response(content, 200)
 
     def add_listing(self, event, context):
@@ -56,7 +62,11 @@ class Handler:
         # so as to prevent back tracing.
         with open("static/" + filename, 'r') as f_in:
             content = f_in.read()
-        return self.create_response(content, 200)
+        file_ending = filename.split('.')[-1]
+        if file_ending in MIMETYPES:
+            return self.create_response(content, 200, MIMETYPES[file_ending])
+        else:
+            return self.create_response(content, 200)
 
     def auth(self, event, context):
         try:

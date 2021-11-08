@@ -60,6 +60,13 @@ It is versatile in creating many scoreboards that can be displayed and edited.
 First, the AWS Lambdas provide an access point for users to view and login to the scoreboards.
 DynamoDB allows for quick and easy storage of the scoreboards.
 
+### Development Notes
+
+To test the lambda function without deploying, use a combination of the following.
+Use `serverless invoke local -f {function name} -p {data path}` to invoke a function with specific data.
+Use `serverless offline` to run an HTTP server on `localhost:3000` to test the HTML and css.
+To compile the SASS files, run `sass -s compressed --no-source-map --watch static` to watch for changes made to the static `.scss` files.
+
 ### Contributing
 
 Create any issues under the [GitHub page][0] for bugs or feature requests.

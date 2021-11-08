@@ -6,6 +6,8 @@
 
 # Serverless directories
 node_modules/
+package-lock.json
+packagin.json
 .serverless
 
 # Development directories

@@ -53,11 +53,12 @@ functions:
           path: static/{filename}
 
 plugins:
-  # If not using the custom domain then comment out the next line
   - serverless-domain-manager
-  # If you're on linux and wish to not use docker for compiling, comment out the next line
   - serverless-python-requirements
+  - serverless-offline
 custom:
+  serverless-offline:
+    noPrependStageInUrl: 1
   # Modify the following variables to change the domain name and subdomain
   # you can also change the base path and more down below in the customDomain poriton
   appDomain: 'prestonhager.xyz'

@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1em 5em;
+}
+
+li.listing {
+  display: flex;
+  background: #dedede;
+  padding: 0.5em 1em;
+  border: 0.0625em black solid;
+  border-bottom: 0;
+  .listing-id {
+    display: none;
+  }
+  .listing-name {
+    flex: 3;
+  }
+  .listing-score {
+    flex: 1;
+  }
+  &:first-child {
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+  }
+  &:last-child {
+    border: 0.0625em black solid;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
+}
