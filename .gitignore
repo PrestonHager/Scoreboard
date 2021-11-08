@@ -5,6 +5,7 @@
 *.egg
 
 # Serverless directories
+node_modules/
 .serverless
 
 # Development directories

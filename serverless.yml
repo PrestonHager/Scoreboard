@@ -53,17 +53,22 @@ functions:
           path: static/{filename}
 
 plugins:
+  # If not using the custom domain then comment out the next line
   - serverless-domain-manager
+  # If you're on linux and wish to not use docker for compiling, comment out the next line
   - serverless-python-requirements
-
 custom:
+  # Modify the following variables to change the domain name and subdomain
+  # you can also change the base path and more down below in the customDomain poriton
+  appDomain: 'prestonhager.xyz'
+  subdomain: scoreboard
+  # If you commented out the serverless-python-requirements line, comment out this too
   pythonRequirements:
-    boto3: true
-    bcrypt: true
-    jinja2: true
+    dockerizePip: true
+  # If you commented out the serverless-domain-manager line, comment out this too
   customDomain:
-    domainName: scoreboard.prestonhager.xyz
+    domainName: ${self:custom.subdomain}.${self:custom.appDomain}
     basePath: ''
     stage: ${self:provider.stage, 'dev'}
-    certificateName: 'prestonhager.xyz'
+    certificateName: ${self:custom.appDomain}
     createRoute53Record: false

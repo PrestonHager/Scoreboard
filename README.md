@@ -11,6 +11,7 @@ The following are all needed for basic instalation:
  + AWS Account
  + Serverless
  + Python 3.8
+ + Docker (only if not on Linux)
 
 The next components are all optional but make for a better flow of the scoreboard.
 
@@ -42,6 +43,11 @@ or
 ```bash
   serverless config credentials --provider aws --key AKIAIOSFODNN7EXAMPLE --secret wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
+
+If you are not using a custom domain then comment out the last part of the `serverless.yml` file.
+If you are on linux, you may not need to use docker to compile the dependencies.
+Comment out the `python-requrements` portion of the `serverless.yml` file if you don't want to use docker.
+Sometimes, it still won't work and you may get internal server errors (HTML 500), in this case, try redeploying it using the docker compiling.
 
 Now, run `serverless deploy` in the terminal at the Scoreboard directory.
 If all goes well, you should see a deployment and a url like the following in the output: `https://abcd1234ij.execute-api.us-east-1.amazonaws.com/dev/`.
