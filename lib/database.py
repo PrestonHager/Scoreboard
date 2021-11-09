@@ -36,10 +36,13 @@ class Database:
     def new_listing(self, scoreboard_id, **kwargs):
         new_listing = {
             "listing_id": str(uuid4()),
+            "name": "Unnamed",
             "total": 0
         }
         if "total" in kwargs:
             new_listing["total"] = kwargs["total"]
+        if "name" in kwargs:
+            new_listing["name"] = kwargs["name"]
         scoreboard = self.get_scoreboard(scoreboard_id)
         scoreboard["scores"][new_listing['listing_id']] = new_listing
         query = self._update_item('scoreboard_id', scoreboard_id, "set scores = :s", {":s": scoreboard["scores"]})
@@ -69,9 +72,14 @@ class Database:
         elif "scores" in kwargs:
             query = self._update_item('scoreboard_id', scoreboard_id, "set scores = :s", {":s": kwargs["scores"]})
 
+    def update_scoreboard(self, scoreboard_id, **kwargs):
+        if "name" in kwargs:
+            query = self._update_item('scoreboard_id', scoreboard_id, "set name = :n", {":n": kwargs["name"]})
+
     def _new_scoreboard(self, scoreboard_id):
         new_scoreboard = {
             "scoreboard_id": scoreboard_id,
+            "name": "Unnamed",
             "scores": {}
         }
         self.table.put_item(Item=new_scoreboard)

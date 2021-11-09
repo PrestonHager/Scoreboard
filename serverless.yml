@@ -27,6 +27,12 @@ functions:
       - http:
           method: GET
           path: '/'
+  edit:
+    handler: handler.login
+    events:
+      - http:
+          method: GET
+          path: edit
   auth:
     handler: handler.auth
     events:
@@ -45,6 +51,12 @@ functions:
       - http:
           method: POST
           path: edit-listing
+  edit_scoreboard:
+    handler: handler.edit_scoreboard
+    events:
+      - http:
+          method: POST
+          path: edit-scoreboard
   static:
     handler: handler.static
     events:
