@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+}
+
+#scoreboard-name-entry {
+  display: none;
+}
+
+h1, p {
+  &.header {
+    text-align: center;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1em 5em;
+}
+
+li.listing {
+  background: #dedede;
+  padding: 0.5em 1em;
+  border: 0.0625em black solid;
+  border-bottom: 0;
+
+  .listing-name {
+    flex: 3;
+  }
+  .listing-score {
+    flex: 1;
+  }
+
+  .listing-data {
+    display: flex;
+  }
+
+  .listing-entry {
+    display: none;
+    .listing-name {
+      padding-right: 1em;
+      input {
+        width: 100%;
+        border: none;
+      }
+    }
+    .listing-score {
+      padding-right: 1em;
+      p {
+        margin: 0;
+        float: left;
+      }
+      span.input-entry {
+        display: block;
+        overflow: hidden;
+        padding-right: 5px;
+        padding-left: 10px;
+        input {
+          width: 100%;
+          border: none;
+        }
+      }
+    }
+  }
+
+  &:first-child {
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+  }
+  &:last-child {
+    border: 0.0625em black solid;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
+}
+
+.container {
+  padding: 0 16px;
+  text-align: center;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 0.8em 1.2em;
+  margin: 0.5em 0;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.edit-button, &.delete-button {
+    padding: 0 1em;
+    margin: 0;
+    background-color: transparent;
+
+    i {
+      color: #04AA6D;
+      font-size: 1.3em;
+    }
+  }
+
+  &.done-button {
+    padding: 0.2em 0.5em;
+    margin: 0;
+  }
+
+  &.delete-button i {
+    color: #E85348;
+  }
+}
+
+div.popup {
+  display: none;
+  background-color: #AAA;
+  opacity: 0.8;
+  padding: 1em 2em;
+  text-align: center;
+  width: 30%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -9,6 +9,9 @@
     "message": "Password invalid."
   },
   "4": {
-    "message": "Access key invalid."
+    "message": "Access key invalid or not found."
+  },
+  "5": {
+    "message": "Invalid file path."
   }
 }

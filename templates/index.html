@@ -7,11 +7,10 @@
 </head>
 <body>
   <h1 class="header">Scoreboard</h1>
-  <p class="header">{{ name }}</p>
+  <p class="header">{{ title }}</p>
   <ul>
   {% for listing in scores %}
     <li class="listing">
-      <span class="listing-id">{{ listing }}</span>
       <span class="listing-name">{{ scores[listing]['name'] or 'Unknown'}}</span>
       <span class="listing-score">Score - {{ scores[listing]['total'] }}</span>
     </li>

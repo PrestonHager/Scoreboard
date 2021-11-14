@@ -15,7 +15,7 @@ class PasswordManager:
         return bcrypt.hashpw(self.salt + password, bcrypt.gensalt())
 
     def compare(self, password, hash):
-        return bcrypt.checkpw(self.salt + password, hash)
+        return bcrypt.checkpw((self.salt + password).encode("utf-8"), hash.encode("utf-8"))
 
 class AuthorizationManager:
     def __init__(self, database):

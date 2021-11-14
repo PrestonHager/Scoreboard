@@ -2,6 +2,7 @@
 # by Preston Hager
 
 import boto3
+from botocore.exceptions import ClientError
 
 import datetime
 
@@ -28,7 +29,7 @@ class Database:
         return query["Item"]
 
     def get_access_key(self, access_key):
-        query = self.table.get_item(Key={"key": access_key})
+        query = self.table.get_item(Key={"key": str(access_key)})
         if "Item" not in query:
             return None
         return query["Item"]
@@ -66,20 +67,35 @@ class Database:
         self.table.put_item(Item=new_key_item)
         return new_key_item
 
-    def update_listing(self, scoreboard_id, listing_id, **kwargs):
+    def update_listing(self, scoreboard_id, **kwargs):
         if "listing" in kwargs:
-            query = self._update_item('scoreboard_id', scoreboard_id, "set scores = :s", {":s": kwargs["listing"]["scores"]})
+            scoreboard = self.get_scoreboard(scoreboard_id)
+            if kwargs["listing"]["listing_id"] in scoreboard["scores"]:
+                scoreboard["scores"][kwargs["listing"]["listing_id"]].update(kwargs["listing"])
+                query = self._update_item('scoreboard_id', scoreboard_id, "set scores = :s", {":s": scoreboard["scores"]})
+                return scoreboard["scores"][kwargs["listing"]["listing_id"]]
+            else:
+                raise ValueError(f"Listing with id `{kwargs['listing']['listing_id']}` does not exist.")
+
+    def update_scoreboard(self, scoreboard_id, **kwargs):
+        if "title" in kwargs:
+            query = self._update_item('scoreboard_id', scoreboard_id, "set title = :t", {":t": kwargs["title"]})
         elif "scores" in kwargs:
             query = self._update_item('scoreboard_id', scoreboard_id, "set scores = :s", {":s": kwargs["scores"]})
 
-    def update_scoreboard(self, scoreboard_id, **kwargs):
-        if "name" in kwargs:
-            query = self._update_item('scoreboard_id', scoreboard_id, "set name = :n", {":n": kwargs["name"]})
+    def delete_listing(self, scoreboard_id, listing_id):
+        scoreboard = self.get_scoreboard(scoreboard_id)
+        if listing_id in scoreboard["scores"]:
+            del scoreboard["scores"][listing_id]
+            query = self._update_item('scoreboard_id', scoreboard_id, "set scores = :s", {":s": scoreboard["scores"]})
+            return True
+        else:
+            raise ValueError(f"Listing with id `{listing_id}` does not exist.")
 
     def _new_scoreboard(self, scoreboard_id):
         new_scoreboard = {
             "scoreboard_id": scoreboard_id,
-            "name": "Unnamed",
+            "title": "Untitled",
             "scores": {}
         }
         self.table.put_item(Item=new_scoreboard)

@@ -28,7 +28,7 @@ functions:
           method: GET
           path: '/'
   edit:
-    handler: handler.login
+    handler: handler.edit
     events:
       - http:
           method: GET
@@ -57,6 +57,12 @@ functions:
       - http:
           method: POST
           path: edit-scoreboard
+  delete_listing:
+    handler: handler.delete_listing
+    events:
+      - http:
+          method: POST
+          path: delete-listing
   static:
     handler: handler.static
     events:
