@@ -9,8 +9,9 @@ frameworkVersion: '2'
 
 package:
   exclude:
-    - ./**
+    - '**'
   include:
+    - '!./**'
     - handler.py
     - errors.json
     - templates/**

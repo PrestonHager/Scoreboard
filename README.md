@@ -64,7 +64,10 @@ DynamoDB allows for quick and easy storage of the scoreboards.
 
 To test the lambda function without deploying, use a combination of the following.
 Use `serverless invoke local -f {function name} -p {data path}` to invoke a function with specific data.
-Use `serverless offline` to run an HTTP server on `localhost:3000` to test the HTML and css.
+Use `serverless-offline` to run an HTTP server on `localhost:3000` to test the HTML and css.
+To use serverless-offline, you must first install the Python requirements through pip.
+Run `python -m pip install -t ./requirements -r requirements.txt` to install all of these in the `requirements` directory at project level.
+Then, run `PYTHONPATH=./requirements serverless offline` to run the server.
 To compile the SASS files, run `sass -s compressed --no-source-map --watch static` to watch for changes made to the static `.scss` files.
 
 ### Contributing

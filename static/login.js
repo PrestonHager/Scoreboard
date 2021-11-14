@@ -8,6 +8,11 @@ $('#login-form').submit((e) => {
     data: form_data,
     success: function(data) {
       window.location.reload();
+    },
+    error: function(data) {
+      console.log("Error: " + JSON.stringify(data));
+      $("#error-container").show();
+      $("#error-message").text(data.responseJSON.error);
     }
   });
 });

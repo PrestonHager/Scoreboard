@@ -5,6 +5,9 @@
 *.egg
 __pycache__/
 
+# Serverless-offline and Python requirements
+requirements/
+
 # Serverless directories
 node_modules/
 package-lock.json

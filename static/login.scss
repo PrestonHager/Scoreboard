@@ -1,3 +1,24 @@
+#error-container {
+  display: none;
+  margin: auto;
+  padding: 0 2em;
+  width: 70%;
+  background-color: lighten(#b00000, 50%);
+  border: solid #b00000 0.125em;
+  border-radius: 1em;
+  h3, p {
+    display: inline-block;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
 /* Bordered form */
 form {
   border: 3px solid #f1f1f1;
