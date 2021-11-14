@@ -7,6 +7,16 @@ org: prestonhager
 
 frameworkVersion: '2'
 
+package:
+  exclude:
+    - ./**
+  include:
+    - handler.py
+    - errors.json
+    - templates/**
+    - lib/**
+    - static/**
+
 provider:
   name: aws
   runtime: python3.8
@@ -18,7 +28,8 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
-      Resource: arn:aws:dynamodb:*:*:table/scoreboard-scoreboards
+        - dynamodb:DeleteItem
+      Resource: arn:aws:dynamodb:*:*:table/scoreboard-*
 
 functions:
   index:
