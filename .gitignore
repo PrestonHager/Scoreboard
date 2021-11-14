@@ -3,12 +3,16 @@
 # Distribution / packaging
 *.egg-info/
 *.egg
+__pycache__/
 
 # Serverless directories
 node_modules/
 package-lock.json
-packagin.json
+package.json
 .serverless
+
+# SASS directories
+.sass-cache/
 
 # Development directories
 data*.json
