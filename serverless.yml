@@ -13,6 +13,8 @@ package:
   include:
     - '!./**'
     - handler.py
+    - database.py
+    - password_manager.py
     - errors.json
     - templates/**
     - lib/**
